@@ -255,10 +255,7 @@ class Person < ApplicationRecord
 
   # Creates a new email
   def email_attributes=(attributes)
-    ActiveSupport::Deprecation.warn(
-      ["Person.email_attributes is deprecated.",
-       "Instead of using nested attributes, build each associated",
-       "model individually inside a DB transaction in the controller."].join(" "))
+    Rails.logger.warn("[DEPRECATED] Person.email_attributes is deprecated. Instead of using nested attributes, build each associated model individually inside a DB transaction in the controller.")
 
     emails.build(attributes)
   end

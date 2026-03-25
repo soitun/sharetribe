@@ -245,8 +245,8 @@ module Kassi
     config.action_controller.default_protect_from_forgery = false
 
     # TODO remove deprecation warnings when removing legacy analytics
-    ActiveSupport::Deprecation.warn("Support for Kissmetrics is deprecated, please use Google Tag Manager instead") if APP_CONFIG.use_kissmetrics.to_s == "true"
-    ActiveSupport::Deprecation.warn("Support for Google Analytics is deprecated, please use Google Tag Manager instead") if APP_CONFIG.use_google_analytics.to_s == "true"
+    Rails.logger.warn("[DEPRECATED] Support for Kissmetrics is deprecated, please use Google Tag Manager instead") if APP_CONFIG.use_kissmetrics.to_s == "true"
+    Rails.logger.warn("[DEPRECATED] Support for Google Analytics is deprecated, please use Google Tag Manager instead") if APP_CONFIG.use_google_analytics.to_s == "true"
 
     config.after_initialize do
       require File.expand_path('../../lib/active_storage_decorator', __FILE__)

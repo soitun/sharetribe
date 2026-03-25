@@ -60,7 +60,7 @@ module TransactionViewUtils
     previous_states = [nil] + transitions.map { |transition| transition[:to_state] }
 
     if transitions.map { |t| t[:to_state] }.include?("pending")
-      ActiveSupport::Deprecation.warn("Transaction state 'pending' is deprecated and will be removed in the future.")
+      Rails.logger.warn("[DEPRECATED] Transaction state 'pending' is deprecated and will be removed in the future.")
     end
 
     transitions
@@ -111,7 +111,7 @@ module TransactionViewUtils
         mood: :positive
       }
     when "accepted"
-      ActiveSupport::Deprecation.warn("Transaction state 'accepted' is deprecated and will be removed in the future.")
+      Rails.logger.warn("[DEPRECATED] Transaction state 'accepted' is deprecated and will be removed in the future.")
       {
         sender: author,
         mood: :positive
@@ -127,7 +127,7 @@ module TransactionViewUtils
         mood: :positive
       }
     when post_pay_accepted
-      ActiveSupport::Deprecation.warn("Transaction state 'paid' without previous state is deprecated and will be removed in the future.")
+      Rails.logger.warn("[DEPRECATED] Transaction state 'paid' without previous state is deprecated and will be removed in the future.")
       {
         sender: starter,
         mood: :positive
@@ -189,7 +189,7 @@ module TransactionViewUtils
         t("conversations.message.payment_preauthorized_wo_sum")
       end
     when "accepted"
-      ActiveSupport::Deprecation.warn("Transaction state 'accepted' is deprecated and will be removed in the future.")
+      Rails.logger.warn("[DEPRECATED] Transaction state 'accepted' is deprecated and will be removed in the future.")
       t("conversations.message.accepted_request")
     when "rejected"
       t("conversations.message.rejected_request")
@@ -206,7 +206,7 @@ module TransactionViewUtils
         t("conversations.message.received_payment_wo_sum")
       end
     when post_pay_accepted
-      ActiveSupport::Deprecation.warn("Transaction state 'paid' without previous state is deprecated and will be removed in the future.")
+      Rails.logger.warn("[DEPRECATED] Transaction state 'paid' without previous state is deprecated and will be removed in the future.")
       t("conversations.message.paid", sum: amount)
     when "canceled"
       t("conversations.message.canceled_request")

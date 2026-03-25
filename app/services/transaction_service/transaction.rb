@@ -259,8 +259,7 @@ module TransactionService::Transaction
 
   def payment_details(tx)
     if DEPRECATED_GATEWAYS.include?(tx.payment_gateway)
-      ActiveSupport::Deprecation.warn(
-        "Payment gateway adapter '#{tx.payment_gateway}' is deprecated.")
+      Rails.logger.warn("[DEPRECATED] Payment gateway adapter '#{tx.payment_gateway}' is deprecated.")
 
       { payment_total: nil,
         total_price: tx.unit_price * tx.listing_quantity,

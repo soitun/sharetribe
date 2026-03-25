@@ -40,7 +40,7 @@ module TransactionHelper
 
     status_hash = {
       pending: ->() {
-        ActiveSupport::Deprecation.warn("Transaction state 'pending' is deprecated and will be removed in the future.")
+        Rails.logger.warn("[DEPRECATED] Transaction state 'pending' is deprecated and will be removed in the future.")
         {
           author: {
             icon: icon_waiting_you,
@@ -62,7 +62,7 @@ module TransactionHelper
         }
       } },
       accepted: ->() {
-        ActiveSupport::Deprecation.warn("Transaction state 'accepted' is deprecated and will be removed in the future.")
+        Rails.logger.warn("[DEPRECATED] Transaction state 'accepted' is deprecated and will be removed in the future.")
           {
           author: {
             icon: icon_waiting_other,
